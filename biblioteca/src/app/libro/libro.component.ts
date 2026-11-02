@@ -9,7 +9,7 @@ interface Libro {
 }
 
 @Component({
-  imports: [],
+  imports: [FormsModule],
   selector: 'app-libro',
   styleUrl: './libro.component.css',
   templateUrl: './libro.component.html',
@@ -19,6 +19,8 @@ export class LibroComponent {
   constructor(private router: Router) {}
   libros: Libro[] = [];
   indiceEditar = -1;
+  autor: string = '';
+  titulo: string = '';
 
 
   //Cragar ddatos iniciales
@@ -39,13 +41,49 @@ leer(){
       this.libros = JSON.parse(librosGuardados);
 }
 }
+//CREATE
+crear() {
+  if (this.autor.trim() === '' || this.titulo.trim() === '') {
+    alert('Por favor, complete todos los campos.');
+    return;
+  }
+
+  //Gnerar ID
+  const id = this.libros.length + 1;
+
+  if(this.indiceEditar === -1){
+    //Insertar
+    this.libros.push({
+      id: id,
+      autor: this.autor,
+      titulo: this.titulo
+    })
+
+  }else{
+    //Editar
+
+  }
+  this.guardarLocal();
+  this.limpiar();
+
+
+}
 
 
 
 
+//Guardar en localStorage
+guardarLocal() {
+  localStorage.setItem('libros', JSON.stringify(this.libros));
+  alert('Libro guardado correctamente.');
+}
 
-
-
+  //Limpiar
+  limpiar() {
+    this.indiceEditar = -1;
+    this.autor = '';
+    this.titulo = '';
+  }
 
 
   //Cerrar sesion
