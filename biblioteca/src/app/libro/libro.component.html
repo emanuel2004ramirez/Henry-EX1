@@ -5,17 +5,22 @@
   <input type="text"  name="autor" [(ngModel)]="autor" required>
   <button type="submit">Crear Libro</button>
 </form>
+<button (click)="limpiar()">Cancelar</button>
 <table border="1">
   <tr>
     <th>ID</th>
     <th>Titulo</th>
     <th>Autor</th>
+    <th>Acciones</th>
   </tr>
   @for (libro of libros; track libro.id) {
     <tr>
       <td>{{ libro.id }}</td>
       <td>{{ libro.titulo }}</td>
       <td>{{ libro.autor }}</td>
+      <td>
+        <button (click)="actualizar($index)">Editar</button>
+        
     </tr>
   }@empty {
     <p>No hay libros disponibles.</p>

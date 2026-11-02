@@ -61,12 +61,21 @@ crear() {
 
   }else{
     //Editar
+    this.libros[this.indiceEditar].autor = this.autor;
+    this.libros[this.indiceEditar].titulo = this.titulo;
 
   }
   this.guardarLocal();
   this.limpiar();
 
 
+}
+
+//UPDATE
+actualizar(indice: number) {
+  this.indiceEditar = indice;
+  this.autor = this.libros[indice].autor;
+  this.titulo = this.libros[indice].titulo;
 }
 
 
