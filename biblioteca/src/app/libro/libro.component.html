@@ -1,3 +1,19 @@
-<p>libro works!</p>
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Titulo</th>
+    <th>Autor</th>
+  </tr>
+  @for (libro of libros; track libro.id) {
+    <tr>
+      <td>{{ libro.id }}</td>
+      <td>{{ libro.titulo }}</td>
+      <td>{{ libro.autor }}</td>
+    </tr>
+  }@empty {
+    <p>No hay libros disponibles.</p>
+  }
+
+     
 
 <button (click)="cerrarSesion()">Cerrar sesión</button>
