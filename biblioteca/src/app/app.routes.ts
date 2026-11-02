@@ -5,5 +5,6 @@ import { LibroComponent } from './libro/libro.component';
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'libro', component: LibroComponent }
+  { path: 'libro', component: LibroComponent },
+  {path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];

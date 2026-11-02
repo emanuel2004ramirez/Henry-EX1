@@ -49,7 +49,7 @@ crear() {
   }
 
   //Gnerar ID
-  const id = this.libros.length + 1;
+  const id = this.libros.length > 0 ? this.libros[this.libros.length - 1].id + 1 : 1;
 
   if(this.indiceEditar === -1){
     //Insertar
@@ -78,13 +78,20 @@ actualizar(indice: number) {
   this.titulo = this.libros[indice].titulo;
 }
 
+//DELETE
+eliminar(indice: number) {
+  if (confirm('¿Estás seguro de que deseas eliminar este libro?')) {
+    this.libros.splice(indice, 1);
+    this.guardarLocal();
+  }
+}
+
 
 
 
 //Guardar en localStorage
 guardarLocal() {
   localStorage.setItem('libros', JSON.stringify(this.libros));
-  alert('Libro guardado correctamente.');
 }
 
   //Limpiar
